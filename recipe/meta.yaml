@@ -21,7 +21,7 @@ requirements:
     - setuptools >=38.3.0
     - wheel
   run:
-    - python
+    - python >=3.5
 
 test:
   imports:
