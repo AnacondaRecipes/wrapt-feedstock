@@ -16,7 +16,7 @@ build:
 
 requirements:
   build:
-    #- {{ stdlib('c') }}
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
     - pip
@@ -37,6 +37,7 @@ test:
   requires:
     - pip
     - pytest
+    - mypy
 
 about:
   home: https://github.com/GrahamDumpleton/wrapt
