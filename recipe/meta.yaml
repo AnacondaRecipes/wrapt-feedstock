@@ -20,6 +20,7 @@ requirements:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
+    - python
     - pip
     - setuptools >=62.0
     - wheel
