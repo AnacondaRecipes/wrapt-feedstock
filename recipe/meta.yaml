@@ -23,7 +23,6 @@ requirements:
     - pip
     - setuptools >=62.0
     - wheel
-    - setuptools >=38.3.0
   run:
     - python
 
