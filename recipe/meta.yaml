@@ -13,7 +13,6 @@ build:
   number: 0
   skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
-  skip: true  # [py<38]
 
 requirements:
   build:
