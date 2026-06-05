@@ -1,5 +1,5 @@
 {% set name = "wrapt" %}
-{% set version = "2.0.1" %}
+{% set version = "2.2.1" %}
 
 package:
   name: {{ name }}
@@ -7,22 +7,22 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9c9c635e78497cacb81e84f8b11b23e0aacac7a136e73b8e5b2109a1d9fc468f
+  sha256: 6744f504375775d7609c82c8d3d94af1c9a6f05586984536905908ba905277b9
 
 build:
   number: 0
+  skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
-  skip: true  # [py<38]
 
 requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
-    - pip
     - python
+    - pip
+    - setuptools >=62.0
     - wheel
-    - setuptools >=38.3.0
   run:
     - python
 
