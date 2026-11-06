@@ -1,5 +1,5 @@
 {% set name = "wrapt" %}
-{% set version = "2.2.1" %}
+{% set version = "2.5.1" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 6744f504375775d7609c82c8d3d94af1c9a6f05586984536905908ba905277b9
+  sha256: f595bb0185aab3e9dc31950c95d914f56ea8278810c3b928f3426e12ed6d27bc
 
 build:
   number: 0
@@ -26,8 +26,12 @@ requirements:
   run:
     - python
 
+# The mypy fixtures compare mypy output byte-for-byte against checked-in .out files,
+# which only matches the exact mypy release used upstream. Both cases below differ
+# with the mypy shipped in pkgs/main.
 # E   AssertionError: Output did not match expected for mypy_function_wrapper_fn_t6.py
-{% set deselect_tests = " --deselect=tests/conftest.py::mypy_function_wrapper_fn_t6" %}
+# E   AssertionError: Output did not match expected for mypy_patch_function_wrapper_t1.py
+{% set deselect_tests = " --deselect=tests/conftest.py::mypy_function_wrapper_fn_t6 --deselect=tests/conftest.py::mypy_patch_function_wrapper_t1" %}
 test:
   source_files:
     - tests
@@ -35,7 +39,7 @@ test:
     - wrapt
   commands:
     - pip check
-    - pytest -v tests {{ deselect_tests }}
+    - pytest -vv tests {{ deselect_tests }}
   requires:
     - pip
     - pytest
